@@ -26,7 +26,7 @@ public class EnergyTransmitter extends SlimefunItem {
     public EnergyTransmitter(Category category, ItemStack item, String name, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, name, recipeType, recipe);
 
-        new BlockMenuPreset(name, "&cEnergy Transmitter") {
+        new BlockMenuPreset(name, "&cПередатчик электричества") {
         	
         	@Override
             public void init() {
@@ -37,7 +37,7 @@ public class EnergyTransmitter extends SlimefunItem {
             public void newInstance(final BlockMenu menu, final Block block) {
                 if (BlockStorage.getLocationInfo(block.getLocation(), "enabled") != null) {
                     if (BlockStorage.getLocationInfo(block.getLocation(), "enabled").equalsIgnoreCase("true")) {
-                        menu.replaceExistingItem(13, new CustomItem(Material.GREEN_STAINED_GLASS_PANE, "&aEnabled"));
+                        menu.replaceExistingItem(13, new CustomItem(Material.GREEN_STAINED_GLASS_PANE, "&aВключен"));
                         menu.addMenuClickHandler(13, new MenuClickHandler() {
                         	
                             @Override
@@ -48,7 +48,7 @@ public class EnergyTransmitter extends SlimefunItem {
                             }
                         });
                     } else {
-                        menu.replaceExistingItem(13, new CustomItem(Material.RED_STAINED_GLASS_PANE, "&cDisabled"));
+                        menu.replaceExistingItem(13, new CustomItem(Material.RED_STAINED_GLASS_PANE, "&cОтключен"));
                         menu.addMenuClickHandler(13, new MenuClickHandler() {
                         	
                             @Override

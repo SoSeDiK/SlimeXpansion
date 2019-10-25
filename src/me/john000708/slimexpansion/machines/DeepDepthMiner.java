@@ -58,7 +58,7 @@ public class DeepDepthMiner extends SimpleSlimefunItem<BlockTicker> {
     public DeepDepthMiner(Category category, ItemStack item, String name, RecipeType recipeType, final ItemStack[] recipe) {
         super(category, item, name, recipeType, recipe);
 
-        new BlockMenuPreset(name, "&6Deep Depth Miner") {
+        new BlockMenuPreset(name, "&6Глубокий ядерный копатель") {
         	
             public void init() {
                 constructMenu(this);
@@ -69,7 +69,7 @@ public class DeepDepthMiner extends SimpleSlimefunItem<BlockTicker> {
                 if (BlockStorage.getLocationInfo(block.getLocation(), "enabled") != null) {
                     if (BlockStorage.getLocationInfo(block.getLocation(), "enabled").equals("true")) {
                         for (int i : toggleBorder) {
-                            menu.replaceExistingItem(i, new CustomItem(Material.GREEN_STAINED_GLASS_PANE, "&aEnabled"));
+                            menu.replaceExistingItem(i, new CustomItem(Material.GREEN_STAINED_GLASS_PANE, "&aВключен"));
                             menu.addMenuClickHandler(i, new MenuClickHandler() {
                                 @Override
                                 public boolean onClick(Player player, int i, ItemStack itemStack, ClickAction clickAction) {
@@ -80,10 +80,10 @@ public class DeepDepthMiner extends SimpleSlimefunItem<BlockTicker> {
                             });
                         }
                     } else if (BlockStorage.getLocationInfo(block.getLocation(), "enabled").equals("false")) {
-                        menu.replaceExistingItem(4, new CustomItem(Material.DIAMOND_BLOCK, "&3Laser Idle"));
+                        menu.replaceExistingItem(4, new CustomItem(Material.DIAMOND_BLOCK, "&3Лазерная установка прохлаждается"));
 
                         for (int i : toggleBorder) {
-                            menu.replaceExistingItem(i, new CustomItem(Material.RED_STAINED_GLASS_PANE, "&cDisabled"));
+                            menu.replaceExistingItem(i, new CustomItem(Material.RED_STAINED_GLASS_PANE, "&cОтключен"));
                             menu.addMenuClickHandler(i, new MenuClickHandler() {
                                 @Override
                                 public boolean onClick(Player player, int i, ItemStack itemStack, ClickAction clickAction) {
@@ -153,7 +153,7 @@ public class DeepDepthMiner extends SimpleSlimefunItem<BlockTicker> {
         }
 
         if (stop) {
-            BlockStorage.getInventory(block).replaceExistingItem(4, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&4No Bedrock Found"));
+            BlockStorage.getInventory(block).replaceExistingItem(4, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&4Бедрок не обнаружен"));
             return;
         }
 
@@ -161,17 +161,17 @@ public class DeepDepthMiner extends SimpleSlimefunItem<BlockTicker> {
         ChargableBlock.addCharge(block, -getEnergyConsumption());
 
         if (!(BlockStorage.getInventory(block).getItemInSlot(9) != null && SlimefunManager.isItemSimiliar(BlockStorage.getInventory(block).getItemInSlot(9), Items.LASER_CHARGE, false))) {
-            BlockStorage.getInventory(block).replaceExistingItem(4, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&4No Laser Charge Found"));
+            BlockStorage.getInventory(block).replaceExistingItem(4, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&4Отсутствует лазерный заряд"));
             return;
         }
 
         ItemStack laserCharge = BlockStorage.getInventory(block).getItemInSlot(9);
         ItemMeta meta = laserCharge.getItemMeta();
-        int durability = Integer.valueOf(ChatColor.stripColor(laserCharge.getItemMeta().getLore().get(3).replace("Durability: ", "").split("/")[0]));
+        int durability = Integer.valueOf(ChatColor.stripColor(laserCharge.getItemMeta().getLore().get(3)).replace("\u21E8 Прочность: ", "").split("/")[0]);
         List<String> lore = laserCharge.getItemMeta().getLore();
 
         if (durability > 1) {
-            lore.set(3, ChatColor.translateAlternateColorCodes('&', "&7Durability: " + String.valueOf(durability - 1) + "/1024"));
+            lore.set(3, ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &7Прочность: " + String.valueOf(durability - 1) + "/1024"));
             meta.setLore(lore);
             laserCharge.setItemMeta(meta);
             BlockStorage.getInventory(block).replaceExistingItem(9, laserCharge);
@@ -179,7 +179,7 @@ public class DeepDepthMiner extends SimpleSlimefunItem<BlockTicker> {
             BlockStorage.getInventory(block).replaceExistingItem(9, new ItemStack(Material.AIR));
         }
 
-        BlockStorage.getInventory(block).replaceExistingItem(4, new CustomItem(new ItemStack(Material.EMERALD_BLOCK), "&aLaser Operational"));
+        BlockStorage.getInventory(block).replaceExistingItem(4, new CustomItem(new ItemStack(Material.EMERALD_BLOCK), "&aЛазерная установка работает"));
 
         if (laserPos == 3) {
             BlockStorage.getInventory(block).replaceExistingItem(laserBar[laserPos - 1], new CustomItem(Material.LIGHT_GRAY_STAINED_GLASS_PANE, " "));
@@ -213,9 +213,9 @@ public class DeepDepthMiner extends SimpleSlimefunItem<BlockTicker> {
             processTime = 3;
             ItemStack outputItem = null;
             if (random.nextInt(100) <= 5) {
-                if (OreGenSystem.wasResourceGenerated(OreGenSystem.getResource("Thorium"), block.getChunk())) {
-                    if (OreGenSystem.getSupplies(OreGenSystem.getResource("Thorium"), block.getChunk(), false) > 0) {
-                        OreGenSystem.setSupplies(OreGenSystem.getResource("Thorium"), block.getChunk(), OreGenSystem.getSupplies(OreGenSystem.getResource("Thorium"), block.getChunk(), false) - 1);
+                if (OreGenSystem.wasResourceGenerated(OreGenSystem.getResource("Торий"), block.getChunk())) {
+                    if (OreGenSystem.getSupplies(OreGenSystem.getResource("Торий"), block.getChunk(), false) > 0) {
+                        OreGenSystem.setSupplies(OreGenSystem.getResource("Торий"), block.getChunk(), OreGenSystem.getSupplies(OreGenSystem.getResource("Торий"), block.getChunk(), false) - 1);
                         outputItem = Items.THORIUM;
                     }
                 }
@@ -315,14 +315,14 @@ public class DeepDepthMiner extends SimpleSlimefunItem<BlockTicker> {
             });
         }
 
-        preset.addItem(4, new CustomItem(Material.DIAMOND_BLOCK, "&3Laser Idle"));
+        preset.addItem(4, new CustomItem(Material.DIAMOND_BLOCK, "&3Лазерная установка прохлаждается"));
     }
 
     private Inventory inject(Block b) {
         int size = BlockStorage.getInventory(b).toInventory().getSize();
         Inventory inv = Bukkit.createInventory(null, size);
         for (int i = 0; i < size; i++) {
-            inv.setItem(i, new CustomItem(Material.COMMAND_BLOCK, "&4ALL YOUR PLACEHOLDERS ARE BELONG TO US"));
+            inv.setItem(i, new CustomItem(Material.COMMAND_BLOCK, "&4ВСЕ ВАШИ ПЛЕЙСХОЛДЕРЫ ПРИНАДЛЕЖАТ НАМ"));
         }
         inv.setItem(17, BlockStorage.getInventory(b).getItemInSlot(17));
         return inv;

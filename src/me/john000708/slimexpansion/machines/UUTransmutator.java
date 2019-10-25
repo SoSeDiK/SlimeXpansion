@@ -40,7 +40,7 @@ public class UUTransmutator extends SlimefunItem {
     public UUTransmutator(Category category, ItemStack item, String name, RecipeType recipeType, final ItemStack[] recipe) {
         super(category, item, name, recipeType, recipe);
 
-        new BlockMenuPreset(name, "&5UU Transmutator") {
+        new BlockMenuPreset(name, "&5Универсальный используемый трансмутатор") {
         	
             public void init() {
                 constructMenu(this);
@@ -202,7 +202,7 @@ public class UUTransmutator extends SlimefunItem {
         int size = BlockStorage.getInventory(b).toInventory().getSize();
         Inventory inv = Bukkit.createInventory(null, size);
         for (int i = 0; i < size; i++) {
-            inv.setItem(i, new CustomItem(Material.COMMAND_BLOCK, "&4ALL YOUR PLACEHOLDERS ARE BELONG TO US"));
+            inv.setItem(i, new CustomItem(Material.COMMAND_BLOCK, "&4ВСЕ ВАШИ ПЛЕЙСХОЛДЕРЫ ПРИНАДЛЕЖАТ НАМ"));
         }
         for (int slot : getOutputSlots()) {
             inv.setItem(slot, BlockStorage.getInventory(b).getItemInSlot(slot));

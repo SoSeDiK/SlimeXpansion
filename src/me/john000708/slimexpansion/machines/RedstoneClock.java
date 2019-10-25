@@ -33,7 +33,7 @@ public class RedstoneClock extends SlimefunItem {
     public RedstoneClock(Category category, ItemStack item, String name, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, name, recipeType, recipe);
 
-        new BlockMenuPreset(name, "&4Redstone Clock") {
+        new BlockMenuPreset(name, "&4Редстоуновые часы") {
         	
             @Override
             public void init() {
@@ -43,7 +43,7 @@ public class RedstoneClock extends SlimefunItem {
             @Override
             public void newInstance(final BlockMenu blockMenu, final Block block) {
                 if (BlockStorage.getLocationInfo(block.getLocation(), "time") != null) {
-                    blockMenu.replaceExistingItem(11, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&e+15 Seconds"));
+                    blockMenu.replaceExistingItem(11, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&e+15 секунд"));
                     blockMenu.addMenuClickHandler(11, new MenuClickHandler() {
                     	
                         @Override
@@ -57,7 +57,7 @@ public class RedstoneClock extends SlimefunItem {
                         }
                     });
 
-                    blockMenu.replaceExistingItem(12, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&e+1 Second"));
+                    blockMenu.replaceExistingItem(12, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&e+1 секунда"));
                     blockMenu.addMenuClickHandler(12, new MenuClickHandler() {
                     	
                         @Override
@@ -71,9 +71,9 @@ public class RedstoneClock extends SlimefunItem {
                         }
                     });
 
-                    blockMenu.replaceExistingItem(13, new CustomItem(Material.CLOCK, "&bTick Every &e" + BlockStorage.getLocationInfo(block.getLocation(), "time") + " &bSeconds"));
+                    blockMenu.replaceExistingItem(13, new CustomItem(Material.CLOCK, "&bСрабатывать каждые &e" + BlockStorage.getLocationInfo(block.getLocation(), "time") + " &bс"));
 
-                    blockMenu.replaceExistingItem(14, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&e-1 Second"));
+                    blockMenu.replaceExistingItem(14, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&e-1 секунда"));
                     blockMenu.addMenuClickHandler(14, new MenuClickHandler() {
                     	
                         @Override
@@ -87,7 +87,7 @@ public class RedstoneClock extends SlimefunItem {
                         }
                     });
 
-                    blockMenu.replaceExistingItem(15, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&e-15 Seconds"));
+                    blockMenu.replaceExistingItem(15, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&e-15 секунд"));
                     blockMenu.addMenuClickHandler(15, new MenuClickHandler() {
                     	
                         @Override
@@ -137,7 +137,7 @@ public class RedstoneClock extends SlimefunItem {
             @Override
             public void tick(final Block block, SlimefunItem slimefunItem, Config config) {
                 if ((tickTime % 2) != 0) return;
-                BlockStorage.getInventory(block).replaceExistingItem(13, new CustomItem(Material.CLOCK, "&bTick Every &e" + BlockStorage.getLocationInfo(block.getLocation(), "time") + " &bSeconds", "&7Time Left: " + BlockStorage.getLocationInfo(block.getLocation(), "timeLeft") + "s"));
+                BlockStorage.getInventory(block).replaceExistingItem(13, new CustomItem(Material.CLOCK, "&bСрабатывать каждые &e" + BlockStorage.getLocationInfo(block.getLocation(), "time") + " &bс", "&7Осталось времени: " + BlockStorage.getLocationInfo(block.getLocation(), "timeLeft") + "с"));
 
                 int timeLeft = Integer.valueOf(BlockStorage.getLocationInfo(block.getLocation(), "timeLeft"));
 

@@ -192,12 +192,12 @@ public class SlimeXpansion extends JavaPlugin {
         new ItemStack[] {null, SlimefunItems.REINFORCED_ALLOY_INGOT, null, SlimefunItems.REINFORCED_ALLOY_INGOT, new ItemStack(Material.REDSTONE), SlimefunItems.REINFORCED_ALLOY_INGOT, null, SlimefunItems.REINFORCED_ALLOY_INGOT, null}).register();
 
         new SlimefunItem(Categories.RESOURCES, Items.THORIUM, "THORIUM", CustomRecipeType.DEEP_MINER, 
-        new ItemStack[] {null, null, null, null, new CustomItem(Material.PAPER, "&fHint!", "&a&oMake sure to first GEO-Scan the chunk in which you are", "&a&omining to discover Thorium!"), null, null, null, null}).register();
+        new ItemStack[] {null, null, null, null, new CustomItem(Material.PAPER, "&fСовет!", "&a&oУбедитесь, что Вы использовали", "&a&oгеосканер для обнаружения тория!"), null, null, null, null}).register();
 
         new Alloy(Categories.RESOURCES, Items.MAG_THOR, "MAG_THOR", 
         new ItemStack[] {SlimefunItems.REINFORCED_ALLOY_INGOT, Items.THORIUM, SlimefunItems.MAGNESIUM_INGOT, SlimefunItems.ZINC_INGOT, null, null, null, null, null}).register();
 
-        new SlimefunItem(CustomCategories.SLIMEFUN_XPANSION, new CustomItem(new ItemStack(Material.BEDROCK), "&8Bedrock"), "BEDROCK", RecipeType.ENHANCED_CRAFTING_TABLE, 
+        new SlimefunItem(CustomCategories.SLIMEFUN_XPANSION, new CustomItem(new ItemStack(Material.BEDROCK), "&8Бедрок"), "BEDROCK", RecipeType.ENHANCED_CRAFTING_TABLE,
         new ItemStack[] {null, Items.BEDROCK_DUST, null, Items.BEDROCK_DUST, Items.THORIUM, Items.BEDROCK_DUST, null, Items.BEDROCK_DUST, null}).register();
 
         new DamagableChargableItem(Categories.TECH, Items.ELECTRIC_CHESTPLATE, "ELECTRIC_CHESTPLATE", RecipeType.ENHANCED_CRAFTING_TABLE, 
@@ -249,7 +249,7 @@ public class SlimeXpansion extends JavaPlugin {
 
             @Override
             public String getName() {
-                return "Thorium";
+                return "Торий";
             }
 
             @Override
@@ -264,7 +264,7 @@ public class SlimeXpansion extends JavaPlugin {
 
             @Override
             public String getMeasurementUnit() {
-                return "Units";
+                return "Единиц";
             }
 
             @Override
@@ -275,15 +275,15 @@ public class SlimeXpansion extends JavaPlugin {
     }
 
     private void setupResearches() {
-        Slimefun.registerResearch(new Research(500, "Going Green", 25), Items.RECYCLER);
-        Slimefun.registerResearch(new Research(501, "Wireless Charging", 40), Items.WIRELESS_CHARGER);
-        Slimefun.registerResearch(new Research(502, "Weather Manipulation", 50), Items.RAIN_MAKER, Items.DISSIPATION_CHARGE, Items.IODINE_CHARGE, Items.EMPTY_CAPSULE);
-        Slimefun.registerResearch(new Research(503, "Redstone Revolution", 35), Items.LINKER, Items.REDSTONE_TRANSMITTER, Items.REDSTONE_RECEIVER, Items.REDSTONE_CLOCK);
-        Slimefun.registerResearch(new Research(504, "Matter from Energy", 65), Items.UU_MATTER, Items.UU_FABRICATOR, Items.UU_TRANSMUTATOR);
-        Slimefun.registerResearch(new Research(505, "Bedrock Mining", 75), Items.BEDROCK_BREAKER, Items.BEDROCK_DRILL, Items.BEDROCK_DUST);
-        Slimefun.registerResearch(new Research(506, "Deep Depth Mining", 55), Items.DEEP_DEPTH_MINER, Items.LASER_CHARGE, Items.THORIUM);
-        Slimefun.registerResearch(new Research(507, "Superalloys", 35), Items.MAG_THOR);
-        Slimefun.registerResearch(new Research(508, "Chunk Loading", 85), Items.CHUNK_LOADER, Items.CHUNK_LOADER);
-        Slimefun.registerResearch(new Research(509, "Astronaut Food?", 45), Items.FOOD_SYNTHESIZER);
+        Slimefun.registerResearch(new Research(500, "Озеленение", 25), Items.RECYCLER);
+        Slimefun.registerResearch(new Research(501, "Беспроводная зарядка", 40), Items.WIRELESS_CHARGER);
+        Slimefun.registerResearch(new Research(502, "Управление погодой", 50), Items.RAIN_MAKER, Items.DISSIPATION_CHARGE, Items.IODINE_CHARGE, Items.EMPTY_CAPSULE);
+        Slimefun.registerResearch(new Research(503, "Эволюция редстоуна", 35), Items.LINKER, Items.REDSTONE_TRANSMITTER, Items.REDSTONE_RECEIVER, Items.REDSTONE_CLOCK);
+        Slimefun.registerResearch(new Research(504, "Дело в энергии!", 65), Items.UU_MATTER, Items.UU_FABRICATOR, Items.UU_TRANSMUTATOR);
+        Slimefun.registerResearch(new Research(505, "Бедрок разрушаем?", 75), Items.BEDROCK_BREAKER, Items.BEDROCK_DRILL, Items.BEDROCK_DUST);
+        Slimefun.registerResearch(new Research(506, "Глубокое копание", 55), Items.DEEP_DEPTH_MINER, Items.LASER_CHARGE, Items.THORIUM);
+        Slimefun.registerResearch(new Research(507, "Сверхсплавы", 35), Items.MAG_THOR);
+        Slimefun.registerResearch(new Research(508, "Загрузка чанков…", 85), Items.CHUNK_LOADER, Items.CHUNK_LOADER);
+        Slimefun.registerResearch(new Research(509, "Пища космонавтов?", 45), Items.FOOD_SYNTHESIZER);
     }
 }

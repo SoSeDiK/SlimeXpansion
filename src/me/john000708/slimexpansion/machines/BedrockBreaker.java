@@ -52,7 +52,7 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
     public BedrockBreaker(Category category, ItemStack item, String name, RecipeType recipeType, final ItemStack[] recipe) {
         super(category, item, name, recipeType, recipe);
 
-        new BlockMenuPreset(name, "&4Bedrock Breaker") {
+        new BlockMenuPreset(name, "&4Ломатель бедрока") {
         	
         	@Override
             public void init() {
@@ -62,11 +62,11 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
             @Override
             public void newInstance(final BlockMenu menu, final Block block) {
                 if (BlockStorage.getLocationInfo(block.getLocation(), "enabled") != null) {
-                    menu.replaceExistingItem(14, new CustomItem(new ItemStack(Material.DIAMOND_BLOCK), "&3Breaker Idle"));
-                    menu.replaceExistingItem(15, new CustomItem(new ItemStack(Material.DIAMOND_BLOCK), "&3Breaker Idle"));
+                    menu.replaceExistingItem(14, new CustomItem(new ItemStack(Material.DIAMOND_BLOCK), "&3Буровая установка прохлаждается"));
+                    menu.replaceExistingItem(15, new CustomItem(new ItemStack(Material.DIAMOND_BLOCK), "&3Буровая установка прохлаждается"));
                     if (!BlockStorage.getLocationInfo(block.getLocation(), "enabled").equalsIgnoreCase("true")) {
                         for (int i : toggleSlots) {
-                            menu.replaceExistingItem(i, new CustomItem(Material.RED_STAINED_GLASS_PANE, "&cDisabled"));
+                            menu.replaceExistingItem(i, new CustomItem(Material.RED_STAINED_GLASS_PANE, "&cОтключен"));
                             menu.addMenuClickHandler(i, new MenuClickHandler() {
                                 @Override
                                 public boolean onClick(Player player, int i, ItemStack itemStack, ClickAction clickAction) {
@@ -78,7 +78,7 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
                         }
                     } else {
                         for (int i : toggleSlots) {
-                            menu.replaceExistingItem(i, new CustomItem(Material.GREEN_STAINED_GLASS_PANE, "&aEnabled"));
+                            menu.replaceExistingItem(i, new CustomItem(Material.GREEN_STAINED_GLASS_PANE, "&aВключен"));
                             menu.addMenuClickHandler(i, new MenuClickHandler() {
                                 @Override
                                 public boolean onClick(Player player, int i, ItemStack itemStack, ClickAction clickAction) {
@@ -106,7 +106,7 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
             }
         };
     }
-    
+
     public int getEnergyConsumption() {
         return 4098;
     }
@@ -114,7 +114,7 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
     @Override
     public BlockTicker getItemHandler() {
     	return new BlockTicker() {
-        	
+
             @Override
             public boolean isSynchronized() {
                 return false;
@@ -134,30 +134,30 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
 
     protected void tick(final Block block) {
         if (!(time % 2 == 0)) return;
-        
+
         if (BlockStorage.getLocationInfo(block.getLocation(), "enabled") == null || BlockStorage.getLocationInfo(block.getLocation(), "enabled").equals("false"))
             return;
-        
+
         if (getEnergyConsumption() > ChargableBlock.getCharge(block)) return;
-        
+
         if (block.getRelative(BlockFace.DOWN).getType() != Material.BEDROCK) {
-            updateStatus(block, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&4No Bedrock Found"));
+            updateStatus(block, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&4Бедрок не обнаружен"));
             return;
         }
-        
+
         if (!(BlockStorage.getInventory(block).getItemInSlot(10) != null && SlimefunManager.isItemSimiliar(BlockStorage.getInventory(block).getItemInSlot(10), Items.BEDROCK_DRILL, false))) {
-            updateStatus(block, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&4No Drill Found"));
+            updateStatus(block, new CustomItem(new ItemStack(Material.REDSTONE_BLOCK), "&4Отсутствует головка бура"));
             return;
         }
-        
+
         final Block bedrockBlock = block.getRelative(BlockFace.DOWN);
         ItemStack drillItem = BlockStorage.getInventory(block).getItemInSlot(10);
         ItemMeta meta = drillItem.getItemMeta();
         List<String> lore = meta.getLore();
-        int durability = Integer.valueOf(ChatColor.stripColor(lore.get(3).replace("Durability: ", "").split("/")[0]));
+        int durability = Integer.valueOf(ChatColor.stripColor(lore.get(4)).replace("\u21E8 Прочность: ", "").split("/")[0]);
 
         if (durability > 1) {
-            lore.set(3, ChatColor.translateAlternateColorCodes('&', "&7Durability: " + String.valueOf(durability - 1) + "/1024"));
+            lore.set(4, ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &7Прочность: " + String.valueOf(durability - 1) + "/1024"));
             meta.setLore(lore);
             drillItem.setItemMeta(meta);
             BlockStorage.getInventory(block).replaceExistingItem(10, drillItem);
@@ -190,7 +190,7 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
         } else {
 
             block.getWorld().spawnParticle(Particle.BLOCK_CRACK, block.getLocation().add(.5, .5, .5), 50, Material.BEDROCK.createBlockData());
-            updateStatus(block, new CustomItem(new ItemStack(Material.EMERALD_BLOCK), "&aBreaker Operational", "", "&7Bedrock Durability: " + BlockStorage.getLocationInfo(block.getLocation(), "durability")));
+            updateStatus(block, new CustomItem(new ItemStack(Material.EMERALD_BLOCK), "&aБуровая установка работает", "", "&7Прочность бедрока: " + BlockStorage.getLocationInfo(block.getLocation(), "durability")));
             timeLeft--;
         }
     }
@@ -208,7 +208,7 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
         int size = BlockStorage.getInventory(b).toInventory().getSize();
         Inventory inv = Bukkit.createInventory(null, size);
         for (int i = 0; i < size; i++) {
-            inv.setItem(i, new CustomItem(Material.COMMAND_BLOCK, "&4ALL YOUR PLACEHOLDERS ARE BELONG TO US"));
+            inv.setItem(i, new CustomItem(Material.COMMAND_BLOCK, "&4ВСЕ ВАШИ ПЛЕЙСХОЛДЕРЫ ПРИНАДЛЕЖАТ НАМ"));
         }
         for (int slot : getOutputSlots()) {
             inv.setItem(slot, BlockStorage.getInventory(b).getItemInSlot(slot));
@@ -264,7 +264,7 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
         preset.addMenuClickHandler(14, new ChestMenu.MenuClickHandler() {
             @Override
             public boolean onClick(Player player, int i, ItemStack itemStack, ClickAction clickAction) {
-                preset.addItem(14, new CustomItem(new ItemStack(Material.DIAMOND_BLOCK), "&3Breaker Idle"));
+                preset.addItem(14, new CustomItem(new ItemStack(Material.DIAMOND_BLOCK), "&3Буровая установка прохлаждается"));
                 return false;
             }
         });
@@ -272,7 +272,7 @@ public class BedrockBreaker extends SimpleSlimefunItem<BlockTicker> {
         preset.addMenuClickHandler(15, new ChestMenu.MenuClickHandler() {
             @Override
             public boolean onClick(Player player, int i, ItemStack itemStack, ClickAction clickAction) {
-                preset.addItem(15, new CustomItem(new ItemStack(Material.DIAMOND_BLOCK), "&3Breaker Idle"));
+                preset.addItem(15, new CustomItem(new ItemStack(Material.DIAMOND_BLOCK), "&3Буровая установка прохлаждается"));
                 return false;
             }
         });

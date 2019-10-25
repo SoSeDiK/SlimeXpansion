@@ -31,14 +31,14 @@ public class Linker extends SimpleSlimefunItem<ItemInteractionHandler> {
                     String lore[] = {"", itemMeta.getLore().get(1), itemMeta.getLore().get(2), "", clickedBlock.getWorld().getName() + ";" + clickedBlock.getX() + ";" + clickedBlock.getY() + ";" + clickedBlock.getZ()};
                     itemMeta.setLore(Arrays.asList(lore));
                     itemStack.setItemMeta(itemMeta);
-                    player.sendMessage(ChatColor.GREEN + "Transmitter Location bound!");
+                    player.sendMessage(ChatColor.GREEN + "Местоположение передатчика указано!");
                 } 
                 else if (BlockStorage.check(clickedBlock, "REDSTONE_RECEIVER") || BlockStorage.check(clickedBlock, "ENERGY_RECEIVER")) {
                     if (itemStack.getItemMeta().getLore().size() != 4 || !itemStack.getItemMeta().getLore().get(3).equals("")) {
                         BlockStorage.addBlockInfo(clickedBlock, "transmitterLoc", itemStack.getItemMeta().getLore().get(4));
-                        player.sendMessage(ChatColor.GREEN + "Transmitter Location set!");
+                        player.sendMessage(ChatColor.GREEN + "Местоположение передатчика установлено!");
                     } else {
-                        player.sendMessage(ChatColor.RED + "No Bound Transmitter found!");
+                        player.sendMessage(ChatColor.RED + "Не указан передатчик!");
                     }
                 }
             }

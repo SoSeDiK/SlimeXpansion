@@ -12,7 +12,7 @@
 # This Plugin utilises an Auto-Updater. If you want to turn that off,
 # simply set options -> auto-update to false
 options:
-  auto-update: true
+  auto-update: false
   lootable-scrapbox: true
   thorium-via-geo-miner: false
   chunkloader-duration: 14440

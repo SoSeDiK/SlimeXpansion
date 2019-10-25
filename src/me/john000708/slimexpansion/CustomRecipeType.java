@@ -16,9 +16,9 @@ public class CustomRecipeType {
     public static final RecipeType BEDROCK_BREAKER;
 
     static {
-        RECYCLER = new RecipeType(new CustomItem(Material.IRON_BLOCK, "&cRecycler", "", "&a&oPut any materials into it and get Scrap out of it"));
-        DEEP_MINER = new RecipeType(new CustomItem(Material.BEACON, "&aDeep Depth Miner", "", "&a&oMine it with the Deep Depth Miner"));
-        BEDROCK_BREAKER = new RecipeType(new CustomItem(Material.IRON_BLOCK, "&aBedrock Breaker", "", "&a&oObtain it by mining bedrock using the Bedrock Breaker"));
-        UU_FABRICATOR = new RecipeType(new CustomItem(Material.PURPLE_STAINED_GLASS, "&aMatter Fabricator", "", "&a&oProduct of a Matter Fabricator"));
+        RECYCLER = new RecipeType(new CustomItem(Material.IRON_BLOCK, "&cПереработчик", "", "&a&oСложите предметы для", "&a&oпереработки в скрап-набор"));
+        DEEP_MINER = new RecipeType(new CustomItem(Material.BEACON, "&aГлубокий ядерный копатель", "", "&a&oДобывается в глубоком ядерном копателе"));
+        BEDROCK_BREAKER = new RecipeType(new CustomItem(Material.IRON_BLOCK, "&aЛоматель бедрока", "", "&a&oВырабатывается ломателем бедрока", "&a&oпри разрушении бедрока"));
+        UU_FABRICATOR = new RecipeType(new CustomItem(Material.PURPLE_STAINED_GLASS, "&aМатричный производитель", "", "&a&oИзделие матричного производителя"));
     }
 }

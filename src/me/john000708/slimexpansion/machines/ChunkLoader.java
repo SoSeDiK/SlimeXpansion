@@ -37,7 +37,7 @@ public class ChunkLoader extends SimpleSlimefunItem<BlockTicker> {
     public ChunkLoader(Category category, ItemStack itemStack, String name, RecipeType recipeType, ItemStack[] recipe) {
         super(category, itemStack, name, recipeType, recipe);
 
-        new BlockMenuPreset(name, "&dChunk Loader") {
+        new BlockMenuPreset(name, "&dЗагрузчик чанков") {
         	
         	@Override
             public void init() {
